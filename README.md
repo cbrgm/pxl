@@ -18,16 +18,16 @@ Use the Makefile in this repository (`make release`) or compile pixelize.go (`go
 ```
 Usage: pxl [command] [options...] <file.png>
 	Command: convert
-	Description: Converts an png image file to pixel art
+	Description: Converts a png image file to pixel art
 		-o Path to the output file. Default is result.png
-		-c Path to the colors.json file
+		-c Path to the colors json file.
 		-l Level of granularity. Default is 8 Bit
-		-w Maximum width for image resizing
-		-h Maximum height for image resizing
+		-w Maximum width for image resizing.
+		-h Maximum height for image resizing.
 	Command: colors
-	Description: Extracts a color palette from an png image file
+	Description: Extracts a color palette from a png image file
 		-o Path to the output file. Default is colors.json
-		-c Number of colors to extract into palette
+		-c Number of colors to extract into palette.
 ```
 
 or use `pxl` as go module
