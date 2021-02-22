@@ -3,8 +3,8 @@
 A small utility written in Go to generate pixelart from PNG images.
 
 <p float="left">
-  <img src="examples/in.png" width="200" />
-<img src="examples/out.png" width="200" />
+  <img src="examples/in_01.png" width="350" />
+  <img src="examples/out_01.png" width="350" />
 </p>
 
 ## Installation
