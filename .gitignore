@@ -28,4 +28,5 @@ _cgo_export.*
 /dist/
 /vendor
 /results
+/bin
 colors.json

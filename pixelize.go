@@ -26,7 +26,7 @@ var (
 	cmdColorsColorsOpt = cmdColors.Int("c", 48, "")
 )
 
-var usage = `Usage: pixelize [command] [options...] file.png
+var usage = `Usage: pixelize [command] [options...] <file.png>
 	Command: convert
 		-o Path to the output file. Default is result.png
 		-c Path to the colors.json file
