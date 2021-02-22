@@ -56,14 +56,12 @@ func main() {
 }
 
 func convertCmd() {
-	f := cmdConvert.Arg(1)
+	f := cmdConvert.Arg(0)
 	o := *cmdConvertOutputOpt
 	c := *cmdConvertColorsOpt
 	l := *cmdConvertLevelOpt
 	w := *cmdConvertWidthOpt
 	h := *cmdConvertHeightOpt
-
-	fmt.Println(f)
 
 	img, err := loadImage(f)
 	if err != nil {
@@ -93,7 +91,7 @@ func convertCmd() {
 }
 
 func colorsCmd() {
-	f := cmdColors.Arg(1)
+	f := cmdColors.Arg(0)
 	o := *cmdColorsOutputOpt
 	c := *cmdColorsColorsOpt
 
@@ -173,11 +171,11 @@ func savePalette(p *pxl.SerializablePalette, path string) error {
 	if err != nil {
 		return err
 	}
-	f, _ := os.OpenFile(absPath, os.O_CREATE, os.ModePerm)
-	defer f.Close()
-
-	e := json.NewEncoder(f)
-	return e.Encode(p)
+	b, err := p.MarshalJSON()
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(absPath, b, os.ModePerm)
 }
 
 func usageAndExit(msg string) {

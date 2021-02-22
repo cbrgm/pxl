@@ -9,19 +9,17 @@ import (
 )
 
 type SerializablePalette struct {
-	Palette []color.Color `json:"values"`
+	Palette []color.Color
 }
 
 func (s *SerializablePalette) UnmarshalJSON(b []byte) error {
-	var tmp struct {
-		Palette []color.RGBA
-	}
-	err := json.Unmarshal(b, &tmp)
+	var palette []color.RGBA
+	err := json.Unmarshal(b, &palette)
 	if err != nil {
 		return err
 	}
-	colors := make([]color.Color, len(tmp.Palette))
-	for i, v := range tmp.Palette {
+	colors := make([]color.Color, len(palette))
+	for i, v := range palette {
 		colors[i] = color.Color(v)
 	}
 	s.Palette = colors
@@ -29,7 +27,7 @@ func (s *SerializablePalette) UnmarshalJSON(b []byte) error {
 }
 
 func (s *SerializablePalette) MarshalJSON() ([]byte, error) {
-	return json.MarshalIndent(s.Palette, "", "  ")
+	return json.Marshal(s.Palette)
 }
 
 func GetColorsFromImage(img image.Image, count int) (*SerializablePalette, error) {
@@ -39,7 +37,6 @@ func GetColorsFromImage(img image.Image, count int) (*SerializablePalette, error
 	p := make([]color.Color, 0, count)
 	q := quantize.MedianCutQuantizer{}
 	colors := q.Quantize(p, img)
-
 	return &SerializablePalette{
 		Palette: colors,
 	}, nil
