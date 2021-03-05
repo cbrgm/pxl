@@ -1,7 +1,6 @@
 package pxl
 
 import (
-	"fmt"
 	"golang.org/x/image/draw"
 	"image"
 	"image/color"
@@ -134,7 +133,6 @@ func resizeImageBounds(maxWidth, maxHeight, dx, dy int) (int, int) {
 	}
 	if dx > maxWidth {
 		ratio = float64(maxWidth) / float64(dx)
-		fmt.Println(ratio)
 	}
 	if dy > maxHeight {
 		ratio = float64(maxHeight) / float64(dy)
