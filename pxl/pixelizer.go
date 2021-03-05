@@ -75,14 +75,14 @@ func (p *Pixelizer) SetColors(cp color.Palette) {
 }
 
 func (p *Pixelizer) SetMaxImageSize(maxWidth, maxHeight int) {
-	if isValidMaxImageSize(maxWidth, maxHeight) {
+	if isValidImageSize(maxWidth, maxHeight) {
 		p.maxWidth = maxWidth
 		p.maxHeight = maxHeight
 	}
 }
 
-func isValidMaxImageSize(maxWidth, maxHeight int) bool {
-	if maxWidth <= 0 || maxHeight <= 0 {
+func isValidImageSize(width, height int) bool {
+	if width <= 0 || height <= 0 {
 		return false
 	}
 	return true
@@ -129,7 +129,7 @@ func scaleTo(src image.Image, rect image.Rectangle, scale draw.Scaler) image.Ima
 // If MaxHeight is greater  than dy, MaxHeight will be used for resizing and has priority over the first condition.
 func resizeImageBounds(maxWidth, maxHeight, dx, dy int) (int, int) {
 	var ratio = 1.0
-	if maxWidth <= 0 && maxHeight <= 0 {
+	if !isValidImageSize(maxWidth, maxHeight) {
 		return dx, dy
 	}
 	if dx > maxWidth {
