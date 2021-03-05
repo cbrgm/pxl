@@ -54,6 +54,8 @@ func main() {
 	case "colors":
 		cmdColors.Parse(os.Args[2:])
 		colorsCmd()
+	default:
+		usageAndExit("no command selected")
 	}
 }
 
